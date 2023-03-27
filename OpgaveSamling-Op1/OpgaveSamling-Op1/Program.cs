@@ -14,7 +14,7 @@ namespace OpgaveSamling_Op1
             // 2 til 20 og 2 til 40
             PlusetalMedSigSelv();
 
-            TimesFortineTimes();
+            //TimesFortineTimes();
             
         }
 
