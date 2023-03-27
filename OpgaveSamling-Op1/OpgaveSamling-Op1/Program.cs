@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading;
 
 namespace OpgaveSamling_Op1
 {
@@ -8,6 +10,12 @@ namespace OpgaveSamling_Op1
         {
             // frimkaller metoden
             Console.WriteLine(SimpleRecursion(5));
+
+            // Fibonacci tal methode
+            Console.WriteLine(Fibonacci(40));
+
+            // 2 til 20 og 2 til 40
+            PlusetalMedSigSelv();
         }
 
 
@@ -25,5 +33,35 @@ namespace OpgaveSamling_Op1
                 return SimpleRecursion(n - 1);
         }
 
+        static int Fibonacci(int n)
+        {
+            if (n < 2)
+                return n;
+            else
+                return Fibonacci(n - 1) + Fibonacci(n - 2);
+            
+        }
+
+        /// <summary>
+        /// so it takes 1 millisecond to figger out the fiboncci on 20 
+        /// and it takes 2 seconds and somverer to 312 from to 215. and thata is a tremendes difrins ind time
+        /// </summary>
+        static void PlusetalMedSigSelv()
+        {
+            Stopwatch ClockTime = new Stopwatch();
+
+            // udskriver 
+            Console.WriteLine();
+            ClockTime = Stopwatch.StartNew();
+            for (int i = 2; i <= 20; i+= 2)
+            {
+                Console.WriteLine(Fibonacci(i));
+            }
+            ClockTime.Stop();
+
+            TimeSpan timeItTok = ClockTime.Elapsed;
+
+            Console.WriteLine($"this is the time it tok minuts:{timeItTok.Minutes} Seconds:{timeItTok.Seconds} Milliseconds:{timeItTok.Milliseconds}");
+        }
     }
 }
