@@ -1,22 +1,39 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading;
+using System.Numerics;
 
 namespace OpgaveSamling_Op1
 {
     class Program
     {
+        // main program
+        #region
         static void Main(string[] args)
         {
             // frimkaller metoden
             Console.WriteLine(SimpleRecursion(5));
+            Console.WriteLine();
 
             // 2 til 20 og 2 til 40
             PlusetalMedSigSelv();
+            Console.WriteLine();
 
             //TimesFortineTimes();
+            TimesFortineTimes();
+            Console.WriteLine();
+
+            // et selv exempel på hvad jeg skal gøre.
+            // også dette var ikke måden jeg skulle gøre det men detgiver samme rasutalt
+            int teast = 1;
+            for (int i = 1; i <= 14; i++)
+            {              
+                Console.WriteLine(teast);
+                teast *= i + 1;
+            }
+
             
         }
+        #endregion
 
         // 1.1
         #region
@@ -46,7 +63,7 @@ namespace OpgaveSamling_Op1
             Stopwatch ClockTime = new Stopwatch();
 
             // udskriver 
-            Console.WriteLine();
+
             ClockTime = Stopwatch.StartNew();
             for(int i = 2; i <= 20; i+= 2)
             {
@@ -71,24 +88,24 @@ namespace OpgaveSamling_Op1
         // 1.3
         #region
 
-
         /// <summary>
-        /// det der skal gøres er at tallet bliver ganged med det nestes rekke nummer så 24 * 5 = 120 
+        /// det der skal gøres er at vi bruger Faktorial til at lave nummrerne og i for looped går fi igennem dem all
         /// </summary>
         static void TimesFortineTimes()
         {
-            for (int i = 0; i <= 14; i++)
+            for (UInt32 i = 1; i <= 21; i++)
             {
-                Console.WriteLine($"{i} {TimesNummberWithItSelf(i)}");
+                Console.WriteLine($"{i} {Faktorial(i)}");
             }
         }
-
-        static int TimesNummberWithItSelf(int n)
+        
+        
+        static UInt32 Faktorial(UInt32 n)
         {
-            if (n >= 14)
+            if (n == 1)
                 return n;
             else
-                return TimesNummberWithItSelf(n * 2);
+                return n * Faktorial(n - 1);
         }
         #endregion
     }
