@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Numerics;
 
 namespace OpgaveSamling_Op1
 {
@@ -60,11 +59,8 @@ namespace OpgaveSamling_Op1
         /// </summary>
         static void PlusetalMedSigSelv()
         {
-            Stopwatch ClockTime = new Stopwatch();
-
             // udskriver 
-
-            ClockTime = Stopwatch.StartNew();
+            Stopwatch ClockTime = Stopwatch.StartNew();
             for(int i = 2; i <= 20; i+= 2)
             {
                 Console.WriteLine(Fibonacci(i));
@@ -99,7 +95,6 @@ namespace OpgaveSamling_Op1
             }
         }
         
-        
         static UInt32 Faktorial(UInt32 n)
         {
             if (n == 1)
@@ -107,6 +102,10 @@ namespace OpgaveSamling_Op1
             else
                 return n * Faktorial(n - 1);
         }
+        #endregion
+
+        // 1.4
+        #region
         #endregion
     }
 }
