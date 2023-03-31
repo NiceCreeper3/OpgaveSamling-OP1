@@ -9,7 +9,8 @@ namespace Binær_søgning_OP4._2._3
         static int TheNummberTheUserWants;
 
         // arrey med random nummrer
-        static List<int> SomsortOfArrey = new List<int>(){ 7, 6, 8, 17, 9, 10, 0, 15, 8, 19 };
+
+        static List<int> SomsortOfArrey = new List<int>() { 4, 6, 8, 9, 9, 10, 12, 15, 16, 19 };
 
 
         /// <summary>
@@ -18,21 +19,46 @@ namespace Binær_søgning_OP4._2._3
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-
-            // sortes aver array
-            SortArray();
-
+            // udskriver "Array"
             foreach (int n in SomsortOfArrey)
             {
-                Console.WriteLine(n);
+                Console.Write(n + ", ");
             }
 
 
+
+            FindNummberIndArray();
             try
             {
-                TheNummberTheUserWants = int.Parse(Console.ReadLine());
+                while (true)
+                {
+                    // 
+                    Console.WriteLine(
+                        "(1) Find nummber ind ''Array''" +
+                        "(2) inset a new nummber into the ''Array''" +
+                        "(0) Exit ");
+                    int WhatTheUserWants = int.Parse(Console.ReadLine());
 
-                FindNummberIndArray();
+                    switch (WhatTheUserWants)
+                    {
+                        case 1:
+                            // Askes youser to rite nummber
+                            Console.WriteLine("\n Write a nummber and we wil teal you where it is in the array");
+                            TheNummberTheUserWants = int.Parse(Console.ReadLine());
+
+                            FindNummberIndArray();
+                            break;
+                        case 2:
+                            AddNumberToArray();
+                            break;
+                        case 0:
+                            break;
+
+                    }
+
+
+                }
+
             }
             catch
             {
@@ -41,7 +67,7 @@ namespace Binær_søgning_OP4._2._3
             }
 
         }
-
+/*
         static void SortArray()
         {
             for(int ListNummber = 0; ListNummber <= SomsortOfArrey.Count; ListNummber++)
@@ -63,31 +89,47 @@ namespace Binær_søgning_OP4._2._3
                 }
             }
         }
+*/
 
-
-        //the program 
+        //Finds nummber ind "Array" 
         #region
         static void FindNummberIndArray()
         {
-            // get det middel of a array
-            int mid = SomsortOfArrey[SomsortOfArrey.Count / 2];
+            bool TriningToFindNummber = true;
+            int low = 0;
+            int Hight = SomsortOfArrey.Count - 1;
 
-            while (true)
+            
+            // get det middel of a array
+            while (TriningToFindNummber==true)
             {
-                if (mid == TheNummberTheUserWants)
+                // gets the hafe waje nummber of Hight and Low
+                int mid = low + ((Hight - low) / 2);
+
+                if (SomsortOfArrey[mid] == TheNummberTheUserWants)
                 {
-                    Console.WriteLine(SomsortOfArrey[mid]);
-                    break;
+                    Console.WriteLine("you nummber: " + SomsortOfArrey[mid] + " is ind Colume: " + mid);
+                    TriningToFindNummber = false;
+
                 }
-                else if (TheNummberTheUserWants < mid)
+                else if (low >= Hight) // Makes sure if the nummber is not ind the program. that it stopes the reapite.
                 {
-                    mid /= 2;
+                    Console.WriteLine("this nummber is not in the Array");
+                    TriningToFindNummber = false;
                 }
+                // sørger vi gøre en fram ad fordi vi alledet har teastet det gammle 
+                else if (SomsortOfArrey[mid] < TheNummberTheUserWants)
+                    low = mid + 1;
                 else
-                {
-                    mid *= 2;
-                }
+                    Hight = mid - 1;
             }
+        }
+        #endregion
+
+        #region
+        static void AddNumberToArray()
+        {
+
         }
         #endregion
     }
