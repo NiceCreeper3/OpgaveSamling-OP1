@@ -7,8 +7,7 @@ namespace Binær_søgning_OP4._2._3
     {
         //values
         static int TheNummberTheUserWants;
-
-        // arrey med random nummrer
+        static bool ProgramIsRunning = true;
 
         static List<int> SomsortOfArrey = new List<int>() { 4, 6, 8, 9, 9, 10, 12, 15, 16, 19 };
 
@@ -30,9 +29,9 @@ namespace Binær_søgning_OP4._2._3
             FindNummberIndArray();
             try
             {
-                while (true)
+                while (ProgramIsRunning)
                 {
-                    // 
+                    // USer masseg
                     Console.WriteLine(
                         "(1) Find nummber ind ''Array''" +
                         "(2) inset a new nummber into the ''Array''" +
@@ -49,16 +48,16 @@ namespace Binær_søgning_OP4._2._3
                             FindNummberIndArray();
                             break;
                         case 2:
+                            Console.WriteLine("\n Write a nummber and we wil Put it ind the Array");
+                            TheNummberTheUserWants = int.Parse(Console.ReadLine());
+
                             AddNumberToArray();
                             break;
                         case 0:
+                            ProgramIsRunning = false;
                             break;
-
                     }
-
-
                 }
-
             }
             catch
             {
@@ -126,10 +125,20 @@ namespace Binær_søgning_OP4._2._3
         }
         #endregion
 
+        // adds a nummber to the 
         #region
         static void AddNumberToArray()
         {
+            for(int i = 0; i <= SomsortOfArrey.Count; i++)
+            {
 
+            }
+
+
+            foreach(int n in SomsortOfArrey)
+            {
+                Console.Write(n + ", ");
+            }
         }
         #endregion
     }
