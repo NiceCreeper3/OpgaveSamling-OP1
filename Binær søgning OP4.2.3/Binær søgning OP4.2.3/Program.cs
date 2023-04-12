@@ -6,11 +6,12 @@ namespace Binær_søgning_OP4._2._3
     class Program
     {
         //values
+        #region
         static int TheNummberTheUserWants;
         static bool ProgramIsRunning = true;
 
         static List<int> SomsortOfArrey = new List<int>() { 4, 6, 8, 9, 9, 10, 12, 15, 16, 19 };
-
+        #endregion
 
         /// <summary>
         /// make a program to sort this nummbes
@@ -63,29 +64,6 @@ namespace Binær_søgning_OP4._2._3
                 }
             }
         }
-/*
-        static void SortArray()
-        {
-            for(int ListNummber = 0; ListNummber <= SomsortOfArrey.Count; ListNummber++)
-            {
-                for (int ListNummberInfront = 1; ListNummberInfront <= SomsortOfArrey.Count; ListNummberInfront++)
-                {
-                    // cheacs if det nummber in front is bigger
-                    if(SomsortOfArrey[ListNummber] > SomsortOfArrey[ListNummberInfront])
-                    {
-                        // if the nummber ind front is samaller it gets put bak one space
-                        SomsortOfArrey.RemoveAt(ListNummberInfront);
-                        SomsortOfArrey.Insert(ListNummberInfront -1, SomsortOfArrey[ListNummberInfront]);
-                    }
-
-                    foreach(int i in SomsortOfArrey)
-                    {
-                        Console.WriteLine(i + " " + ListNummberInfront);
-                    }
-                }
-            }
-        }
-*/
 
         //Finds nummber ind "Array" 
         #region
@@ -137,11 +115,18 @@ namespace Binær_søgning_OP4._2._3
                 // gets the hafe waje nummber of Hight and Low
                 mid = low + ((Hight - low) / 2);
 
-                if (SomsortOfArrey[mid] == TheNummberTheUserWants)// stopes the conunt if it favnede the
+                if (SomsortOfArrey[mid] == TheNummberTheUserWants)// stopes the conunt if it favnede the nummber bekase if the nummber allede 
+                    TriningToFindNummber = false;
+                else if (low >= Hight) 
+                {
+                    // Makes sure if it kant finde a nummber higher or lower. it stopes the counting. this leves mid as ithere 0 or (SomsortOfArrey.Count)
                     TriningToFindNummber = false;
 
-                else if (low >= Hight)// Makes sure if it kant finde a nummber higher or lower. it stopes the counting.
-                    TriningToFindNummber = false;
+                    //makes it so if the unmmuber is higer then all the otheres
+                    //dat it gets put ind a new line ind the "Array"
+                    if (SomsortOfArrey[mid] < TheNummberTheUserWants)
+                        mid += 1;
+                }
 
                 // søgger at (mid) enten gøre en fram eller en tilbage. fordi vi alldrede har 
                 else if (SomsortOfArrey[mid] < TheNummberTheUserWants) 
@@ -150,11 +135,7 @@ namespace Binær_søgning_OP4._2._3
                     Hight = mid - 1;
             }
 
-            //makes it so if the unmmuber is higer then all the otheres
-            //dat it gets put ind a new line ind the "Array"
-            if (SomsortOfArrey[mid] < TheNummberTheUserWants)
-                mid += 1;
-
+            // inserts the nummber to the "Array"
             SomsortOfArrey.Insert(mid, TheNummberTheUserWants);
         }
         #endregion
