@@ -18,24 +18,21 @@ namespace Binær_søgning_OP4._2._3
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            // udskriver "Array"
-            foreach (int n in SomsortOfArrey)
+            while (ProgramIsRunning)
             {
-                Console.Write(n + ", ");
-            }
-
-
-
-            FindNummberIndArray();
-            try
-            {
-                while (ProgramIsRunning)
+                try
                 {
-                    // USer masseg
+                    Console.WriteLine();
+                    foreach (int n in SomsortOfArrey)
+                    {
+                        Console.Write(n + ", ");
+                    }
+
+                    // User masseg
                     Console.WriteLine(
-                        "(1) Find nummber ind ''Array''" +
-                        "(2) inset a new nummber into the ''Array''" +
-                        "(0) Exit ");
+                        "\n(1) Find nummber ind ''Array''" +
+                        "\n(2) inset a new nummber into the ''Array''" +
+                        "\n(0) Exit ");
                     int WhatTheUserWants = int.Parse(Console.ReadLine());
 
                     switch (WhatTheUserWants)
@@ -51,6 +48,7 @@ namespace Binær_søgning_OP4._2._3
                             Console.WriteLine("\n Write a nummber and we wil Put it ind the Array");
                             TheNummberTheUserWants = int.Parse(Console.ReadLine());
 
+                            
                             AddNumberToArray();
                             break;
                         case 0:
@@ -58,13 +56,12 @@ namespace Binær_søgning_OP4._2._3
                             break;
                     }
                 }
-            }
-            catch
-            {
-                Console.WriteLine("Somthing went rong and");
+                catch
+                {
+                    Console.WriteLine("Somthing went rong and");
 
+                }
             }
-
         }
 /*
         static void SortArray()
@@ -97,7 +94,6 @@ namespace Binær_søgning_OP4._2._3
             bool TriningToFindNummber = true;
             int low = 0;
             int Hight = SomsortOfArrey.Count - 1;
-
             
             // get det middel of a array
             while (TriningToFindNummber==true)
@@ -129,16 +125,37 @@ namespace Binær_søgning_OP4._2._3
         #region
         static void AddNumberToArray()
         {
-            for(int i = 0; i <= SomsortOfArrey.Count; i++)
-            {
+            //Values i need for the Sorting
+            bool TriningToFindNummber = true;
+            int low = 0;
+            int Hight = SomsortOfArrey.Count - 1;
+            int mid = 0;
 
+            // get det middel of a array
+            while (TriningToFindNummber == true)
+            {
+                // gets the hafe waje nummber of Hight and Low
+                mid = low + ((Hight - low) / 2);
+
+                if (SomsortOfArrey[mid] == TheNummberTheUserWants)// stopes the conunt if it favnede the
+                    TriningToFindNummber = false;
+
+                else if (low >= Hight)// Makes sure if it kant finde a nummber higher or lower. it stopes the counting.
+                    TriningToFindNummber = false;
+
+                // søgger at (mid) enten gøre en fram eller en tilbage. fordi vi alldrede har 
+                else if (SomsortOfArrey[mid] < TheNummberTheUserWants) 
+                    low = mid + 1;
+                else
+                    Hight = mid - 1;
             }
 
+            //makes it so if the unmmuber is higer then all the otheres
+            //dat it gets put ind a new line ind the "Array"
+            if (SomsortOfArrey[mid] < TheNummberTheUserWants)
+                mid += 1;
 
-            foreach(int n in SomsortOfArrey)
-            {
-                Console.Write(n + ", ");
-            }
+            SomsortOfArrey.Insert(mid, TheNummberTheUserWants);
         }
         #endregion
     }
